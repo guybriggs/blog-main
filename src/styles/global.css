@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+table thead {
+    text-align: center;
+}
+
+table td {
+    vertical-align: top;
+}
+
+#Features table {
+    float: left;
+    width: 50%;
+}
