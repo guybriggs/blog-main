@@ -8,10 +8,11 @@ import About from "../components/About"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-
+  const aboutData = data.aboutData;
+  
   return (
     <Layout location={location} title={siteTitle}>
-      <About />
+      <About data={aboutData} />
     </Layout>
   )
 }
@@ -30,6 +31,20 @@ export const pageQuery = graphql`
     site {
       siteMetadata {
         title
+      }
+    }
+    aboutData: markdownRemark(frontmatter: { title: { eq: "About" } }) {
+      frontmatter {
+        title
+        colours {
+          main
+          secondary
+          text
+        }
+        intro {
+          title
+          body
+        }
       }
     }
   }

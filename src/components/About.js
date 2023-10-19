@@ -3,7 +3,7 @@ import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
 const AboutPage = ({ data }) => {
-  const { title, colours, intro } = data.markdownRemark.frontmatter;
+  const { title, colours, intro } = data.frontmatter;
 
   return (
     <div>
@@ -27,23 +27,6 @@ AboutPage.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
-export const query = graphql`
-  query {
-    markdownRemark(frontmatter: { title: { eq: "About" } }) {
-      frontmatter {
-        title
-        colours {
-          main
-          secondary
-          text
-        }
-        intro {
-          title
-          body
-        }
-      }
-    }
-  }
-`;
+
 
 export default AboutPage;
