@@ -1,9 +1,8 @@
 ---
 title: About
-colours:
-  main: "#007ACC"
-  secondary: "#EDEDED"
-  text: "#333333"
+mainColour: "#007ACC"
+secondaryColour: "#EDEDED"
+textColour: "#333333"
 intro:
   - title: Our Story
     body: >-

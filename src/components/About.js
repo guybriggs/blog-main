@@ -1,17 +1,19 @@
 import React from 'react';
-import { graphql } from 'gatsby';
 import PropTypes from 'prop-types';
 
 const AboutPage = ({ data }) => {
-  const { title, colours, intro } = data.frontmatter;
+  const { 
+    title,
+    mainColour, 
+    secondaryColour,
+    textColour,
+    intro
+  } = data.frontmatter;
 
   return (
-    <div>
-      <h1 style={{ color: colours.text }}>{title}</h1>
-      <div style={{ backgroundColor: colours.main, color: colours.text }}>
-        <h2>About Us</h2>
-      </div>
-      <div style={{ backgroundColor: colours.secondary, color: colours.text }}>
+    <div className='border-4' style={{ backgroundColor: mainColour, borderColor: secondaryColour, color: textColour }}>
+      <h1>{title}</h1>
+      <div className='flex flex-row'>
         {intro.map((section, index) => (
           <div key={index}>
             <h3>{section.title}</h3>
@@ -26,7 +28,5 @@ const AboutPage = ({ data }) => {
 AboutPage.propTypes = {
   data: PropTypes.object.isRequired,
 };
-
-
 
 export default AboutPage;

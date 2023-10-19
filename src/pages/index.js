@@ -36,11 +36,9 @@ export const pageQuery = graphql`
     aboutData: markdownRemark(frontmatter: { title: { eq: "About" } }) {
       frontmatter {
         title
-        colours {
-          main
-          secondary
-          text
-        }
+        mainColour
+        secondaryColour
+        textColour
         intro {
           title
           body

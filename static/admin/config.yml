@@ -14,13 +14,9 @@ collections:
         file: "content/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
-          - label: "Colours"
-            name: "colours"
-            widget: "list"
-            fields:
-              - { label: "Main", name: "main", widget: "color" }
-              - { label: "Secondary", name: "secondary", widget: "color" }
-              - { label: "Text", name: "text", widget: "color" }
+          - { label: "MainColour", name: "mainColour", widget: "color" }
+          - { label: "SecondaryColour", name: "secondaryColour", widget: "color" }
+          - { label: "TextColour", name: "textColour", widget: "color" }
           - label: "Intro"
             name: "intro"
             widget: "list"
