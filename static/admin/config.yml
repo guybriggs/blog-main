@@ -11,7 +11,7 @@ collections:
     files:
       - label: "About"
         name: "about"
-        file: "site/content/about.md"
+        file: "content/about.md"
         fields:
           - { label: "Title", name: "title", widget: "string" }
           - label: "Colours"
