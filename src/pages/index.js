@@ -7,23 +7,17 @@ import Seo from "../components/seo"
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.aboutData.nodes
+  const palette = data.paletteData.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
       <ol style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
-          const textcolour = post.frontmatter.textcolour
-          const maincolour = post.frontmatter.maincolour
-
-          const sectionStyle = {
-            color: textcolour,
-            backgroundColor: maincolour
-          }
 
           return (
-            <li key={post.fields.slug} style={sectionStyle}>
+            <li key={post.fields.slug}>
               <article id={title}>
                 <header>
                   <h2>{title}</h2>
@@ -41,6 +35,26 @@ const BlogIndex = ({ data, location }) => {
           )
         })}
       </ol>
+
+      <ol style={{ listStyle: `none` }}>
+        {palette.map(palette => {
+          const main = palette.frontmatter.main
+          const secondary = palette.frontmatter.secondary
+          const text = palette.frontmatter.text
+          const sectionStyle = {
+            backgroundColor: main,
+            borderColor: secondary,
+            color: text
+          }
+
+          return (
+            <li>  
+              <div className="m-4 p-4 border-4" style={sectionStyle}>Test</div>
+            </li>
+          )
+        })}
+      </ol>
+
     </Layout>
   )
 }
@@ -61,20 +75,32 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { frontmatter: { order: ASC } }) {
+    aboutData: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/content/about/" } }
+    ) {
       nodes {
-        excerpt
+        frontmatter {
+          title
+          date
+          description
+        }
         fields {
           slug
         }
         html
+      }
+    }
+    paletteData: allMarkdownRemark(
+      filter: { fileAbsolutePath: { regex: "/content/palette/" } }
+    ) {
+      nodes {
         frontmatter {
-          title
-          textcolour
-          maincolour
-          secondarycolour
+          main
+          secondary
+          text
         }
       }
     }
   }
-`
+`;
+
